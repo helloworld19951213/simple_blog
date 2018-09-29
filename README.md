@@ -6,5 +6,6 @@
 + 1:  pip install -r requirements.txt
 + 2:  python manage.py makemigrations blog_app
 + 3:  python manage.py migrate
-+ 4:  python manage.py runserver 0.0.0.0:8080
++ 4:  python manage.py createsuperuser
++ 5:  python manage.py runserver 0.0.0.0:8080
 ---
