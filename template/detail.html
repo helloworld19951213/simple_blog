@@ -1,0 +1,63 @@
+{% extends "index_base.html" %}
+{% load static from staticfiles %}
+
+{% block content %}
+    {#    <link rel="stylesheet" href="{% static 'assets/words.css' %}">#}
+    {#    <link rel="stylesheet" href="{% static 'assets/monokai.css' %}">#}
+    {#    <link rel="stylesheet" href="{% static 'assets/3rd/gitment.css' %}">#}
+    {#    <link rel="stylesheet" href="{% static 'assets/semantic/components/table.min.css' %}">#}
+    <link rel="stylesheet" href="{% static 'md_static/css/editormd.preview.css' %}"/>
+    {#    <link rel="stylesheet" href="{% static 'md_static/css/style.css' %}"/>#}
+
+
+
+    <div id="content" class="typo ui container">
+        <div id="article">
+            <h_jh>{{ detail.title }}</h_jh>
+            <h4 style="width: 100%;text-align: right">Posted {{ detail.created_time |date:"M d, Y" }}</h4>
+            <div id="test-editormd-view">
+                <textarea id="append-test" style="display:none;"
+                          name="test-editormd-markdown-doc">{{ content|safe }}</textarea>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+
+    <script src="{% static 'md_static/js/jquery.min.js' %}"></script>
+    <script src="{% static 'md_static/js/lib/marked.min.js' %}"></script>
+    <script src="{% static 'md_static/js/lib/prettify.min.js' %}"></script>
+    <script src="{% static 'md_static/js/lib/raphael.min.js' %}"></script>
+    <script src="{% static 'md_static/js/lib/underscore.min.js' %}"></script>
+    <script src="{% static 'md_static/js/lib/sequence-diagram.min.js' %}"></script>
+    <script src="{% static 'md_static/js/lib/flowchart.min.js' %}"></script>
+    <script src="{% static 'md_static/js/lib/jquery.flowchart.min.js' %}"></script>
+    {#    <script src="{% static 'assets/3rd/gitment.browser.js' %}"></script>#}
+    <script src="{% static 'md_static/js/editormd.js' %}"></script>
+    <script type="text/javascript">
+        $(function () {
+            var testEditormdView, testEditormdView2;
+
+            testEditormdView = editormd.markdownToHTML("test-editormd-view", {
+                markdown: $("#append-test").text(),
+                //htmlDecode      : true,       // 开启 HTML 标签解析，为了安全性，默认不开启
+                htmlDecode: "style,script,iframe",  // you can filter tags decode
+                //toc             : false,
+                tocm: true,    // Using [TOCM]
+                //tocContainer    : "#custom-toc-container", // 自定义 ToC 容器层
+                //gfm             : false,
+                //tocDropdown     : true,
+                // markdownSourceCode : true, // 是否保留 Markdown 源码，即是否删除保存源码的 Textarea 标签
+                emoji: true,
+                taskList: true,
+                tex: true,  // 默认不解析
+                flowChart: true,  // 默认不解析
+                sequenceDiagram: true,  // 默认不解析
+
+            });
+        });
+    </script>
+{% endblock %}
+
+

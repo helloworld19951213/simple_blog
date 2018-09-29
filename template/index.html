@@ -1,0 +1,26 @@
+{% extends "index_base.html" %}
+{% block content %}
+    {% load static from staticfiles %}
+
+    <div id="entryMain">
+        <div id="entrys" class="ui container">
+            {% for word in all_blog %}
+                <div class="date">
+                    {{ word.created_time }}
+                </div>
+                <a href="{% url 'blog_detail' word.id %}" class="ui fluid card"
+                   style="border-radius: 0; margin-bottom: 3em;">
+                    <div class="content" style="padding: 2em; backgrund: rgba(0, 0,0,0);">
+                        <div class="header">
+                            {{ word.title }}
+                        </div>
+
+                    </div>
+                </a>
+
+                <div class="ui divider"></div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
