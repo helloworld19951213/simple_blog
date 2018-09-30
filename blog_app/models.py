@@ -58,6 +58,7 @@ class Blog(BaseModel):
     author = models.ForeignKey(UserProfile, related_name='user_blog', verbose_name='作者')
     content = MDTextField(verbose_name='详细内容')
     tag = models.ForeignKey('BlogTag', verbose_name='文章分类')
+    simple_content = models.CharField(verbose_name='概要', max_length=255)
 
     class Meta:
         verbose_name = '博客文章'

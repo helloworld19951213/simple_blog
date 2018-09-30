@@ -1,18 +1,23 @@
 {% extends "index_base.html" %}
+{% load my_tags %}
 {% block content %}
     {% load static from staticfiles %}
 
     <div id="entryMain">
         <div id="entrys" class="ui container">
-            {% for word in all_blog %}
+            {% for word in all_blog.object_list %}
                 <div class="date">
-                    {{ word.created_time }}
+                    {{ word.created_time |my_timeSince }}
                 </div>
                 <a href="{% url 'blog_detail' word.id %}" class="ui fluid card"
                    style="border-radius: 0; margin-bottom: 3em;">
                     <div class="content" style="padding: 2em; backgrund: rgba(0, 0,0,0);">
                         <div class="header">
-                            {{ word.title }}
+                            {{ word.title |truncatechars:20 }}
+
+                        </div>
+                        <div>
+                            {{ word.simple_content|truncatechars:100 }}
                         </div>
 
                     </div>
@@ -20,6 +25,25 @@
 
                 <div class="ui divider"></div>
             {% endfor %}
+            <div class="pagesDiv  col-md-8 col-sm-8 col-xs-12">
+                {% if all_blog.has_previous %}
+                    <a class="prev btn btn-info" href="?page={{ all_blog.previous_page_number }}">上一页</a>
+                {% endif %}
+                {% ifnotequal max_index 1 %}
+                    {% for pg in page_range %}
+                        {% if all_blog.number == pg %}
+                            <a href="?page={{ pg }}" class="btn btn-default">{{ pg }}</a>
+                        {% else %}
+                            <a href="?page={{ pg }}" class="btn">{{ pg }}</a>
+                        {% endif %}
+                    {% endfor %}
+                {% endifnotequal %}
+
+
+                {% if all_blog.has_next %}
+                    <a class="next btn btn-info" href="?page={{ all_blog.next_page_number }}">下一页</a>
+                {% endif %}
+            </div>
         </div>
     </div>
 
