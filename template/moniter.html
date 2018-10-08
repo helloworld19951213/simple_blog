@@ -57,7 +57,7 @@
     };
     myChart.setOption(option);
     myChart.showLoading();
-    $.get('/moniter/chart//').done(function (data) {
+    $.get('/moniter/chart/').done(function (data) {
         myChart.hideLoading();
         myChart.setOption({
             legend: {
