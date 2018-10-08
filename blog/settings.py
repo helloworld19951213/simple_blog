@@ -29,8 +29,11 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'moniter',
     'mdeditor',
     'blog_app',
+    'utils',
+    'django_crontab',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -132,3 +135,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # 登录success跳转
 LOGIN_REDIRECT_URL = '/'
+
+# 定时任务 监控服务器资源
+
+CRONJOBS = [
+    ('*/1 * * * *', 'utils.monitor_mem.run', '>>/home/horsun/Desktop/mmm.log'),
+    ('*/1 * * * *', 'utils.monitor_network.run', '>>/home/horsun/Desktop/mmm2.log')
+]
