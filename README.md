@@ -17,7 +17,7 @@
 -- Usage:
 例：在.config目录下新建一个  DBConfig.properties 
 - Why:
-  - 将所有配置信息放到一个统一管理的仓库，方便配置文件的管理，如果涉及多人协作、测试环境以及线上环境等因素，再通过gitignore来防止配置文件的混乱，降低一些 secretkey暴露的风险
+  - 将所有配置信息放到一个统一管理的仓库，方便配置文件的管理，如果涉及多人协作、测试环境以及关键信息等，再通过gitignore来防止配置文件的混乱，降低一些 secretkey暴露的风险
 
 
 >DBConfig.properties
