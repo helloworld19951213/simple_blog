@@ -1,8 +1,8 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
+import json
 import logging
 import os
-import json
 
 logger = logging.getLogger('xj.common.config')
 

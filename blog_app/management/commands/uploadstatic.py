@@ -2,8 +2,12 @@ from django.core.management.base import BaseCommand, CommandError
 import os
 import logging
 from django.conf import settings
+from utils.cos_file_storage import Cos
+from utils.config import Config
 
 __STATIC_PATH__ = settings.__getattr__('STATIC_ROOT')
+__COS_config__ = Config.COSConfig
+__STATIC_BUCKET__ = __COS_config__.Bucket
 
 
 class Command(BaseCommand):
@@ -21,3 +25,6 @@ class Command(BaseCommand):
                 self.logger.error(__STATIC_PATH__ + ' not found　！！！！')
                 break
             currentDir = tmpDir
+        __STATIC_DIR__ = os.path.join(currentDir, __STATIC_PATH__)
+        cos = Cos()
+        cos.upload(path=__STATIC_DIR__, bucket=__STATIC_BUCKET__)
