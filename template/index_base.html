@@ -9,15 +9,15 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     {% block css %}
     {% endblock %}
-    <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static 'bower_components/Ionicons/css/ionicons.min.css' %}">
-    <link rel="stylesheet" href="{% static 'dist/css/AdminLTE.min.css' %}">
-    <link rel="stylesheet" href="{% static 'dist/css/skins/_all-skins.min.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/semantic/components/card.min.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/semantic/components/list.min.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/semantic/components/container.min.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/semantic/components/input.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/AdminLTE.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/skins/_all-skins.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/card.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/list.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/container.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/input.min.css' %}">
 
     <!-- Google Font -->
     <link rel="stylesheet"
@@ -105,19 +105,19 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
-<script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
-<script src="{% static 'bower_components/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'main/js/jquery.min.js' %}"></script>
+<script src="{% static 'main/js/jquery-ui.min.js' %}"></script>
 <script>
     $.widget.bridge('uibutton', $.ui.button);
 </script>
 {% block script %}
-    <script src="{% static 'bower_components/raphael/raphael.min.js' %}"></script>
+    <script src="{% static 'main/js/raphael.min.js' %}"></script>
 {% endblock %}
-<script src="{% static 'dist/js/adminlte.min.js' %}"></script>
-<script src="{% static 'bower_components/fastclick/lib/fastclick.js' %}"></script>
-<script src="{% static 'dist/js/pages/dashboard.js' %}"></script>
-<script src="{% static 'dist/js/demo.js' %}"></script>
-<script src="{% static 'assets/js/web.js' %}  "></script>
+<script src="{% static 'main/js/adminlte.min.js' %}"></script>
+<script src="{% static 'main/js/fastclick.js' %}"></script>
+<script src="{% static 'main/js/pages/dashboard.js' %}"></script>
+<script src="{% static 'main/js/demo.js' %}"></script>
+<script src="{% static 'main/js/web.js' %}  "></script>
 
 </body>
 </html>
