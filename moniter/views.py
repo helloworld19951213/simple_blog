@@ -4,7 +4,7 @@ from datetime import datetime
 from django.http import JsonResponse
 from django.shortcuts import render_to_response
 
-from models import Memory, Network, Basic
+from moniter.models import Memory, Network, Basic
 
 
 def index(request):

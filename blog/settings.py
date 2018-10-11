@@ -80,14 +80,18 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+from utils.config import Config
+
+DBinfo = Config.DBConfig
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blog',
-        'USER': 'root',
-        'PASSWORD': 'im7h322000',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'NAME': DBinfo.MYSQL_DANAME,
+        'USER': DBinfo.MYSQL_USER,
+        'PASSWORD': DBinfo.MYSQL_PASSWD,
+        'HOST': DBinfo.MYSQL_HOST,
+        'PORT': DBinfo.MYSQL_PORT,
     },
 }
 

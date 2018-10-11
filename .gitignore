@@ -108,3 +108,4 @@ media/news_files/
 web_static/
 media/
 .vscode/
+*.properties
