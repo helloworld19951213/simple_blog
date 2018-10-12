@@ -1,6 +1,6 @@
 define(function(require){
 	var $ = require("jquery");
-	var editormd = require("editormd");
+	var editormd = require("mdeditor/static/md_static/js/editormd");
     
     require("../../src/js/languages/en"); // 加载英语语言包
     

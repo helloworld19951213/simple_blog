@@ -38,4 +38,11 @@ class BlogDetailView(View):
 
 
 def base_context(request):
+    """
+    全局字段
+    :param request:
+    :return:
+    """
     return {"base_user": UserProfile.objects.first()}
+
+
