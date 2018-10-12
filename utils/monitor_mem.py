@@ -2,7 +2,7 @@
 import os
 from datetime import datetime
 
-from utils.sql_process import DbConn
+from sql_process import DbConn
 
 
 def run():

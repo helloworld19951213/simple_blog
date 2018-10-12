@@ -2,7 +2,7 @@ from datetime import datetime
 
 import MySQLdb
 import logging
-from utils.config import Config
+from config import Config
 import sys
 
 __DBConfig__ = Config.DBConfig

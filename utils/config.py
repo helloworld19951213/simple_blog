@@ -86,7 +86,6 @@ class ConfigHelper(object):
                     continue
                 tmpArr = line.split('=')
                 if len(tmpArr) < 2:
-                    logger.warn(u'readProperties() | Read config "%s" fail' % (line))
                     continue
                 left = tmpArr[0].strip()
                 right = u'='.join(tmpArr[1:]).strip()
