@@ -29,7 +29,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'moniter',
+    'monitor',
     'mdeditor',
     'blog_app',
     'utils',
@@ -141,8 +141,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = '/'
 
 # 定时任务 监控服务器资源
+# python manage.py crontab add    添加定时任务
+#                        ~ remove 删除定时任务
+#                        ~ show   查看定时任务
 
 CRONJOBS = [
-    ('*/1 * * * *', 'utils.monitor_mem.run', '>>/home/horsun/Desktop/mmm.log'),
-    ('*/1 * * * *', 'utils.monitor_network.run', '>>/home/horsun/Desktop/mmm2.log')
+    ('*/1 * * * *', 'utils.monitor_mem.run'),
+    ('*/1 * * * *', 'utils.monitor_network.run'),
 ]

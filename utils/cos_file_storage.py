@@ -29,7 +29,6 @@ class Cos(object):
 
     def upload(self, path, bucket):
         """
-
         :param path:  文件目录
         :param bucket: 上传的bucket
         :return:

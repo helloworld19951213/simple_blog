@@ -21,14 +21,14 @@ from django.contrib import admin
 from blog_app.catch_request_error import handler404, handler500
 from blog_app.views import BlogListView, BlogDetailView
 
-# from moniter import urls
+# from monitor import urls
 
 urlpatterns = [
                   url(r'^admin/', admin.site.urls),
                   url(r'^blog/(?P<pk>.+)', BlogDetailView.as_view(), name='blog_detail'),
                   url(r'^$', BlogListView.as_view()),
                   url(r'mdeditor/', include('mdeditor.urls')),
-                  url(r'monitor/', include('moniter.urls')),
+                  url(r'monitor/', include('monitor.urls')),
               ] + static(settings.MEDIA_URL,
                          document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL,
                                                                      document_root=settings.STATIC_ROOT)

@@ -1,10 +1,7 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 import json
-import logging
 import os
-
-logger = logging.getLogger('xj.common.config')
 
 __CONFIG_DIR__ = '.config'
 __CONFIG_JSON__ = '.json'
@@ -56,7 +53,6 @@ class ConfigHelper(object):
                     self.__readProperties__(shortName, fullPath)
 
     def __readJson__(self, configName, filePath):
-        logger.debug(u'readJson() | Name: %s, Path: %s' % (configName, filePath))
         with open(filePath) as fp:
             setattr(self, configName, Struct(json.load(fp), configName))
 
@@ -76,7 +72,6 @@ class ConfigHelper(object):
                 return value
 
     def __readProperties__(self, configName, filePath):
-        logger.debug(u'readProperties() | Name: %s, Path: %s' % (configName, filePath))
         configMap = {}
         with open(filePath, 'r', encoding='utf-8') as fp:
             for line in fp:
@@ -126,26 +121,3 @@ class ConfigHelper(object):
 
 
 Config = ConfigHelper()
-
-if __name__ == "__main__":
-    handler = logging.StreamHandler()
-    formatter = logging.Formatter('%(asctime)s [%(threadName)s][%(levelname)s] %(message)s')
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
-    logger.setLevel(logging.DEBUG)
-
-    logger.debug(Config.test.Hello)
-    logger.debug(Config.test.World)
-    logger.debug(Config.test.Python.json())
-    logger.debug(Config.test.Python.Key1)
-    logger.debug(Config.test.Python.Sub.Key1)
-
-    logger.debug(Config.Test.Hello)
-    logger.debug(Config.Test.World)
-    logger.debug(Config.Test.Python.json())
-    logger.debug(Config.Test.Python.Key1)
-    logger.debug(Config.Test.Python.Sub.Key1)
-
-    logger.debug(Config.test.hasPython)
-    logger.debug(Config.test.hasPython2)
-    logger.debug(Config.test.Python.KeyNotExist)

@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class IndexConfig(AppConfig):
-    name = 'moniter'
+    name = 'monitor'
     verbose_name = '监控'

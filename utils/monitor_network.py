@@ -5,11 +5,8 @@ import os
 import time
 from datetime import datetime
 
-import MySQLdb
 import psutil
-
-
-# from moniter.models import Network
+from utils.sql_process import DbConn
 
 
 # 处理网络流量
@@ -54,61 +51,24 @@ class NetworkTraffic(object):
         return net_output, net_input, network_times
 
 
-# 处理数据库
-class MysqlOpera(object):
-    host = ""
-    user = ""
-    password = ""
-    db = ""
-    charset = ""
-
-    def __init__(self, password, db, host='127.0.0.1', user='root', charset='utf8'):
-        self.host = host
-        self.user = user
-        self.password = password
-        self.db = db
-        self.charset = charset
-
-    def connect_mysql(self):
-        connection = MySQLdb.connect(host=self.host, user=self.user, passwd=self.password, db=self.db,
-                                     charset=self.charset)
-        return connection
-
-    def query_mysql(self, sql):
-        connection = self.connect_mysql()
-        cursor = connection.cursor()
-        cursor.execute(sql)
-        data = cursor.fetchall()
-        connection.close()
-        return data
-
-    def insert_mysql(self, sql):
-        connection = self.connect_mysql()
-        cursor = connection.cursor()
-        try:
-            cursor.execute(sql)
-            connection.commit()
-        except Exception as e:
-            connection.rollback()
-            print(e.__repr__())
-        connection.close()
-
-
 def run():
-    net_out, net_in = {}, {}
-    network_time = {}
     monitor_hostname = os.popen('hostname').read().splitlines()[0]
 
     monitor_network = NetworkTraffic()
-    mysql_opera = MysqlOpera('im7h322000', 'blog')
 
     net_out, net_in, network_time = monitor_network.handle_network_counters()
 
-    sql_network = "insert into moniter_network(minion_id,network_key,network_in,network_out,network_time)" + \
-                  " values('" + monitor_hostname + "','%s',%s,%s,'%s')"
-    # print sql_network
-
+    db = DbConn('monitor_network')
     for key in net_out.keys():
-        sql_cmd = sql_network % (key, net_in[key], net_out[key], network_time['old'])
-        mysql_opera.insert_mysql(sql_cmd)
-        # print sql_cmd
+        db.insert(
+            minion_id=monitor_hostname,
+            network_key=key,
+            network_in=net_in[key],
+            network_out=net_out[key],
+            network_time=network_time['old']
+        )
+    db.close()
+
+
+if __name__ == '__main__':
+    run()
