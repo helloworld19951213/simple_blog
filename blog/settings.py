@@ -23,7 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'wn+jkjwujb!rg3vh)m(p1+p%a82k7%ca%+-044=88@=ea9d87d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '118.25.126.182']
+
 # 引入APPS目录  install_apps就能直接引入我们的功能模块
 sys.path.insert(0, BASE_DIR)
 sys.path.insert(0, os.path.join(BASE_DIR, 'APPS'))
