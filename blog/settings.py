@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,12 +24,16 @@ SECRET_KEY = 'wn+jkjwujb!rg3vh)m(p1+p%a82k7%ca%+-044=88@=ea9d87d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+# 引入APPS目录  install_apps就能直接引入我们的功能模块
+sys.path.insert(0, BASE_DIR)
+sys.path.insert(0, os.path.join(BASE_DIR, 'APPS'))
+sys.path.insert(0, os.path.join(BASE_DIR, 'utils'))
 ALLOWED_HOSTS = ['*']
 
 # Application definition
 
 INSTALLED_APPS = [
+    # 'djcelery',
     'monitor',
     'mdeditor',
     'blog_app',
@@ -139,13 +144,23 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # 登录success跳转
 LOGIN_REDIRECT_URL = '/'
-
+# ---------------------------------------------
+#              定时任务 django-crontab
 # 定时任务 监控服务器资源
 # python manage.py crontab add    添加定时任务
 #                        ~ remove 删除定时任务
 #                        ~ show   查看定时任务
-
 CRONJOBS = [
-    ('*/1 * * * *', 'utils.monitor_mem.run'),
-    ('*/1 * * * *', 'utils.monitor_network.run'),
+    ('*/1 * * * *', 'utils.monitor_mem.run', '>> /home/horsun/Desktop/error.log'),
+    ('*/1 * * * *', 'utils.monitor_network.run', '>> /home/horsun/Desktop/error.log'),
 ]
+# CRONTAB_COMMAND_SUFFIX = '2>&1'
+# 注意包与包之间的关系
+# ---------------------------------------------
+
+# -----------------------------
+#        定时任务 django-celery   /还在尝试
+# -----------------------------
+# BROKER_URL = 'django://localhost:8000//'
+# CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+# CELERY_TIMEZONE = 'Asia/Shanghai'

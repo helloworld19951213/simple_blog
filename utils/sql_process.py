@@ -2,10 +2,16 @@ from datetime import datetime
 
 import MySQLdb
 import logging
-from config import Config
+from utils.config import Config
 import sys
 
 __DBConfig__ = Config.DBConfig
+
+MYSQL_HOST = __DBConfig__.MYSQL_HOST
+MYSQL_DANAME = __DBConfig__.MYSQL_DANAME
+MYSQL_USER = __DBConfig__.MYSQL_USER
+MYSQL_PASSWD = __DBConfig__.MYSQL_PASSWD
+MYSQL_PORT = __DBConfig__.MYSQL_PORT
 
 
 class DbConn(object):
@@ -14,13 +20,14 @@ class DbConn(object):
         self.table = table
         self.logger = logging.getLogger()
         self.logger.setLevel(logging.NOTSET)
+        self.sql = None
 
     def get_conn(self):
         connect = MySQLdb.connect(
-            host=__DBConfig__.MYSQL_HOST,
-            user=__DBConfig__.MYSQL_USER,
-            passwd=__DBConfig__.MYSQL_PASSWD,
-            db=__DBConfig__.MYSQL_DANAME,
+            host=MYSQL_HOST,
+            user=MYSQL_USER,
+            passwd=MYSQL_PASSWD,
+            db=MYSQL_DANAME,
             charset='utf8'
         )
         self.conn = connect
@@ -36,6 +43,7 @@ class DbConn(object):
             fields = fields.rstrip(',')
             values = values.rstrip(',')
             sql = " insert into {0}".format(self.table) + "({0})".format(fields) + " values({0})".format(values)
+            self.sql = sql
             self.logger.info(sql)
             self.logger.info('insert sql:{0}'.format(sql))
             self.conn.cursor().execute(sql)
@@ -46,6 +54,9 @@ class DbConn(object):
 
     def close(self):
         self.conn.close()
+
+    def get_sql(self):
+        print(self.sql)
 
 
 if __name__ == '__main__':

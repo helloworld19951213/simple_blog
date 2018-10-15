@@ -6,7 +6,7 @@ import time
 from datetime import datetime
 
 import psutil
-from sql_process import DbConn
+from utils.sql_process import DbConn
 
 
 # 处理网络流量

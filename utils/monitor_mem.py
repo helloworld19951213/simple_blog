@@ -1,8 +1,7 @@
-
 import os
 from datetime import datetime
 
-from sql_process import DbConn
+from utils.sql_process import DbConn
 
 
 def run():
@@ -21,6 +20,7 @@ def run():
         memory_time=datetime.strftime(now, ('%Y-%m-%d %H:%M:%S')),
     )
     db.close()
+    print(db.get_sql())
 
 
 if __name__ == '__main__':
