@@ -47,7 +47,7 @@ def get_mem(request):
         memory_list['Available'].append(i.memory_available)
         memory_list['Datetime'].append(
             datetime.strftime(i.memory_time, "%Y-%m-%d %H:%M"))
-    return JsonResponse(memory_list)
+    return memory_list
 
 
 def get_mem_time(request):

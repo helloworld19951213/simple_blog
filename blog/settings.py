@@ -36,7 +36,6 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'utils'))
 # Application definition
 
 INSTALLED_APPS = [
-    # 'djcelery',
     'monitor',
     'mdeditor',
     'blog_app',
@@ -61,6 +60,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'middleware.blog_middleware.UserBasedExceptionMiddleware',
+    'middleware.blog_middleware.ResponseDataMiddleware',
 ]
 CORS_ORIGIN_ALLOW_ALL = True
 

@@ -1,8 +1,8 @@
 from django.core.paginator import PageNotAnInteger
-from pure_pagination import Paginator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import View
+from pure_pagination import Paginator
 
 from blog_app.models import Blog, UserProfile
 
