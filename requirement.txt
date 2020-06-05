@@ -4,7 +4,7 @@ certifi==2018.8.24
 chardet==3.0.4
 cos-python-sdk-v5==1.5.8
 dicttoxml==1.7.4
-Django==1.9
+Django==1.11.29
 django-cors-headers==2.2.0
 django-crontab==0.7.1
 django-pure-pagination==0.3.0
